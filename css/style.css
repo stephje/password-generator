@@ -1,41 +1,45 @@
-*,
-*::before,
-*::after {
+/* *::before,
+*::after,  */
+
+/* Univeral Styles */
+
+* {
   box-sizing: border-box;
 }
 
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+/* General Styles  */
 
-body {
+body
+{
   font-family: sans-serif;
   background-color: #f9fbfd;
-}
-
-.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 20px;
   padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-bottom: 0px; 
 }
 
 header {
-  text-align: center;
   padding: 20px;
   padding-top: 0px;
   color: hsl(206, 17%, 28%);
 }
 
+/* Page Header Styles*/
+
+#page-header{
+  text-align: center;
+}
+
+/* Card Styles */
+
 .card {
-  background-color: hsl(0, 0%, 100%);
+  background-color: #ffffff;
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: hsl(206, 17%, 28%);
+  color: #3b4954;
   font-size: 18px;
   margin: 0 auto;
   max-width: 800px;
@@ -46,7 +50,6 @@ header {
   content: " ";
   display: block;
   width: 100%;
-  background: #e7e9eb;
   height: 2px;
 }
 
@@ -55,30 +58,27 @@ header {
 }
 
 .card-footer {
+  display: block;
   text-align: center;
+  width: 100%;
 }
 
 .card-footer::before {
   content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
   height: 2px;
 }
 
 .card-footer::after {
   content: " ";
-  display: block;
   clear: both;
 }
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: #af0808;
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
-  color: hsl(0, 0%, 100%);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px;
+  color: #ffffff;
   display: inline-block;
   font-size: 22px;
   line-height: 22px;
@@ -93,9 +93,9 @@ button[disabled] {
   background: #c0c7cf;
 }
 
-.float-right {
+/* .float-right {
   float: right;
-}
+} */
 
 #password {
   -webkit-appearance: none;
@@ -104,9 +104,7 @@ button[disabled] {
   border: none;
   display: block;
   width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 15px;
   padding-bottom: 85px;
   font-size: 1.2rem;
   text-align: center;
