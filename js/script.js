@@ -8,60 +8,52 @@ function writePassword() {
 
   function generatePassword() {
 
-    function askForPasswordLength() {
-      //propmt user for input and assign it to variable passwordLength
-      var passwordLength = prompt("Choose a password length between 8 and 128 characters:");
-      
-      //check if user input is valid (a number between 8 and 128)
-      //if not valid, alert and prompt again
-      if (passwordLength < 8 || passwordLength > 128 || isFinite(passwordLength) !== true) {
+    //prompt user for password length
+    //validate user input - if invalid then alert and prompt again, if valid then return
+    var passwordLength = (function askForPasswordLength() {
+      var userInput = prompt("Choose a password length between 8 and 128 characters:");
+      if (userInput < 8 || userInput > 128 || isFinite(userInput) !== true) {
         window.alert("You must enter a number between 8 and 128. Please try again!");
         askForPasswordLength()
       }
-    }
+      return userInput;
+    })();
 
-    //invoke function
-    askForPasswordLength()
-
-    //declaring arrays
-      var questions = ["Include lowercase characters? Y/N", "Include uppercase characters? Y/N", "Include numeric characters? Y/N", "Include special characters? Y/N"]
-      var answers = [];
+    //TESTING DELETE THIS AT THE END
+    console.log(passwordLength)
 
     //ask user the questions sored in array "questions"
-    //convert the answers to boolean
     //store results in array "answers"
+
+    var characterTypes = (function checkCharacterTypes() {
+      const questions = ["Include lowercase characters? Y/N", "Include uppercase characters? Y/N", "Include numeric characters? Y/N", "Include special characters? Y/N"]
+      var answers = [];
       var i;
       for (i = 0; i < questions.length; i++) {
-        var answer = prompt(questions[i]);
-        answer = answer.toUpperCase();
-        if (answer === "Y" || answer === "YES"){
-          answer = true;
+        var answer = confirm(questions[i]);
           answers.push(answer)
-        } else if (answer === "N" || answer === "NO"){
-          answer = false;
-          answers.push(answer)
-        } else {
-          window.alert("Please enter either 'Y' or 'N'")
-          prompt(questions[i]);
       }
+      return answers;
+    })();
 
-      console.log(answers)
+    //TESTING DELETE THIS AT THE END
+    console.log(characterTypes);
 
+    //generate a random number up to a specified value
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    
+      const alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+      const alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const availableNumbers = "0123456789";
+      const specialCharacters = "\!\#\$\%\&\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\]\^\_\`\{\}\~";
+      const options = [alphabetLower, alphabetUpper, availableNumbers, specialCharacters];
+      var randomString = "";
+    
   }
-  
   passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//Pseudocode
-//When the user clicks the "generate" button
-//A prompt is generated asking for the desired password length
-//when length is entered
-//if length is < 8 or > 128 or null, then an error is pasted to the textarea element and script breaks
-//else user is asked to confirm if they want lowercase characters, then
-//user is asked to confirm if they want uppercase chars
-//user is asked to confirm if they want numeric chars
-//user is asked to confirm if the ywant special chars
-//based on results, password should be generated
