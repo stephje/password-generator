@@ -20,8 +20,7 @@ function writePassword() {
     var randomNumbers = getRandomNumbers();
     var passwordArray = createPasswordArray();
 
-    //Prompt user for desired password length and validate input
-    
+    //Prompt user for password length and validate input
     function askForPasswordLength() {
       var passwordLength = prompt("Choose a password length between 8 and 128 characters:");
       while (passwordLength < 8 || passwordLength > 128 || isFinite(passwordLength) !== true) {
@@ -31,10 +30,7 @@ function writePassword() {
       return passwordLength;
     }
 
-    //TESTING DELETE LATER
-    console.log(passwordLength);
-
-    //Confirm with user if they want each character type (lower, upper, numeric, special) and validate input
+    //Confirm if user wants each character type (lower, upper, numeric, special) and validate input
     function getCharacterTypeChoices() {
       const questions = ["Include lowercase characters? Click 'OK' for Yes, 'Cancel' for No", "Include uppercase characters? Click 'OK' for Yes, 'Cancel' for No", "Include numeric characters? Click 'OK' for Yes, 'Cancel' for No", "Include special characters? Click 'OK' for Yes, 'Cancel' for No"]
       var characterTypeChoices = [];
@@ -48,14 +44,8 @@ function writePassword() {
       }
       return characterTypeChoices;
     }
-    
-    //TESTING DELETE LATER
-    console.log(characterTypeChoices);
 
-    //At this point we have an array of random numbers that is the length of the password
-    //We have to go through it and use each number to generate a random character
-
-
+    //Create an array containing all of the character set arrays
     function createCharacterArrays(){
       var characterArrays = new Array ();
       characterArrays[0] = new Array (...alphabetLower);
@@ -64,11 +54,8 @@ function writePassword() {
       characterArrays[3] = new Array (...specialCharacters);
       return characterArrays;
     }
-    
-    //TESTING DELETE LATER 
-    console.log(characterArrays);
 
-    //Create a pool containing all the characters that the user has confirmed they want to include in the password
+    //Create a pool containing just the character types that the user has confirmed they want to include
     function createCharacterPool() {
       var characterPool = [];
       for (let i = 0; i < characterTypeChoices.length; i++) {
@@ -80,15 +67,12 @@ function writePassword() {
       return characterPool;
     }
 
-    //TESTING DELETE LATER
-    console.log(characterPool);
-
-    //Function that generates a random number
+    //generate a random number
     function getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
     }
 
-    //function that makes an array of random numbers the same length as the password length the user specified
+    //create array of random numbers the same length as the password length nominated by the user
     function getRandomNumbers(){
       var randomNumbers = [];
       for (let i = 0; i < passwordLength; i++) {
@@ -98,9 +82,7 @@ function writePassword() {
       return randomNumbers;
     }
 
-    //TESTING DELETE LATER  
-    console.log(randomNumbers);
-
+    //generate random character array
     function createPasswordArray() {
       var passwordArray = [];
       for (let i = 0; i < randomNumbers.length; i++) {
@@ -110,9 +92,7 @@ function writePassword() {
       return passwordArray;
     }
 
-    //TESTING DELETE LATER
-    console.log(passwordArray);
-
+    //convert random character array to string
     password = passwordArray.join("");
     return password; 
 
