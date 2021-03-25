@@ -10,12 +10,14 @@ function writePassword() {
 
     const alphabetLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     const alphabetUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    const availableNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    const specialChars = ['!', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', '\\', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '{', '}', '~']
+    const numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const specialCharacters = ['!', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', '\\', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '{', '}', '~']
 
     var passwordLength = askForPasswordLength();
-    var characterTypes = checkCharacterTypes();
+    var characterTypeChoices = checkCharacterTypes();
     var randomNumbers = getRandomNumbers();
+    var characterArrays = createCharacterArrays();
+    var characterPool = createCharacterPool();
 
     //Prompt user for desired password length and validate input
     
@@ -33,7 +35,7 @@ function writePassword() {
 
     //Confirm with user if they want each character type (lower, upper, numeric, special) and validate input
     function checkCharacterTypes() {
-      const questions = ["Include lowercase characters? Y/N", "Include uppercase characters? Y/N", "Include numeric characters? Y/N", "Include special characters? Y/N"]
+      const questions = ["Include lowercase characters? Click 'OK' for Yes, 'Cancel' for No", "Include uppercase characters? Click 'OK' for Yes, 'Cancel' for No", "Include numeric characters? Click 'OK' for Yes, 'Cancel' for No", "Include special characters? Click 'OK' for Yes, 'Cancel' for No"]
       var characterTypes = [];
       for (let i = 0; i < questions.length; i++) {
         var answer = confirm(questions[i]);
@@ -47,7 +49,7 @@ function writePassword() {
     }
     
     //TESTING DELETE LATER
-    console.log(characterTypes);
+    console.log(characterTypeChoices);
 
     //Function that generates a random number
     function getRandomInt(max) {
@@ -66,6 +68,41 @@ function writePassword() {
 
     //TESTING DELETE LATER  
     console.log(randomNumbers);
+
+    //At this point we have an array of random numbers that is the length of the password
+    //We have to go through it and use each number to generate a random character
+
+
+    function createCharacterArrays(){
+      var characterArrays = new Array ();
+      characterArrays[0] = new Array (...alphabetLower);
+      characterArrays[1] = new Array (...alphabetUpper);
+      characterArrays[2] = new Array (...numericCharacters);
+      characterArrays[3] = new Array (...specialCharacters);
+      return characterArrays;
+    }
+    
+    //TESTING DELETE LATER 
+    console.log(characterArrays);
+
+    function createCharacterPool() {
+      var characterPool = [];
+      for (let i = 0; i < characterTypeChoices.length; i++) {
+        var choice = characterTypeChoices[i];
+        var characterArray = characterArrays[i];
+        if(choice == true) {
+          characterPool.push(...characterArrays[i]);
+        }
+      }
+      return characterPool;
+    }
+
+    //TESTING DELETE LATER
+    console.log(characterPool);
+    
+
+
+
 
 
   }
