@@ -17,8 +17,7 @@ function writePassword() {
     var characterTypeChoices = getCharacterTypeChoices();
     var characterArrays = createCharacterArrays();
     var characterPool = createCharacterPool();
-    var randomNumbers = getRandomNumbers();
-    var passwordArray = createPasswordArray();
+    var passwordArray = getRandomOfEachNominatedType();
 
     //Prompt user for password length and validate input
     function askForPasswordLength() {
@@ -72,31 +71,35 @@ function writePassword() {
       return Math.floor(Math.random() * Math.floor(max));
     }
 
-    //create array of random numbers the same length as the password length nominated by the user
-    function getRandomNumbers(){
-      var randomNumbers = [];
-      for (let i = 0; i < passwordLength; i++) {
-        var randomNumber = getRandomInt(characterPool.length);
-        randomNumbers.push(randomNumber);
-      }
-      return randomNumbers;
-    }
-
-    //generate random character array
-    function createPasswordArray() {
+    //Get once of each character type nominated by the user
+    function getRandomOfEachNominatedType() {
       var passwordArray = [];
-      for (let i = 0; i < randomNumbers.length; i++) {
-        var randomIndex = randomNumbers[i];
-        passwordArray.push(characterPool[randomIndex])
+      for (let i = 0; i < characterTypeChoices.length; i++) {
+        var choice = characterTypeChoices[i];
+        var randomInt = getRandomInt(characterArrays[i].length);
+        if (choice == true) {
+          passwordArray.push(characterArrays[i][randomInt]);
+        }   
       }
       return passwordArray;
     }
 
-    //convert random character array to string
+    var remainder = (passwordLength - passwordArray.length);
+
+    for (let i = 0; i < remainder; i++) {
+      var randomIndex = getRandomInt(characterPool.length);
+      //console.log(randomIndex)
+      var randomChar = characterPool[randomIndex];
+      //console.log(randomChar)
+      passwordArray.push(randomChar)
+    }
+
+    //convert array to string
     password = passwordArray.join("");
     return password; 
 
   }
+  
   passwordText.value = password;
 }
 
