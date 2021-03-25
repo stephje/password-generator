@@ -54,10 +54,11 @@ function writePassword() {
       return Math.floor(Math.random() * Math.floor(max));
     }
 
+    //function that makes an array of random numbers the same length as the password length the user specified
     function getRandomNumbers(){
       var randomNumbers = [];
       for (let i = 0; i < passwordLength; i++) {
-        var randomNumber = getRandomInt(passwordLength);
+        var randomNumber = getRandomInt(9);
         randomNumbers.push(randomNumber);
       }
       return randomNumbers;
@@ -65,15 +66,6 @@ function writePassword() {
 
     //TESTING DELETE LATER  
     console.log(randomNumbers);
-
-    //Function to get array of random characters
-
-    
-
-
-
-
-
 
 
   }
