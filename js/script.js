@@ -71,7 +71,7 @@ function writePassword() {
       return Math.floor(Math.random() * Math.floor(max));
     }
 
-    //Get once of each character type nominated by the user
+    //Randomly select one of each character type nominated by the user
     function getRandomOfEachNominatedType() {
       var passwordArray = [];
       for (let i = 0; i < characterTypeChoices.length; i++) {
@@ -86,11 +86,10 @@ function writePassword() {
 
     var remainder = (passwordLength - passwordArray.length);
 
+    //Fill remainder of array with randomly selected characters from character pool
     for (let i = 0; i < remainder; i++) {
       var randomIndex = getRandomInt(characterPool.length);
-      //console.log(randomIndex)
       var randomChar = characterPool[randomIndex];
-      //console.log(randomChar)
       passwordArray.push(randomChar)
     }
 
