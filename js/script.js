@@ -17,7 +17,7 @@ function writePassword() {
     var characterTypeChoices = getCharacterTypeChoices();
     var characterArrays = createCharacterArrays();
     var characterPool = createCharacterPool();
-    var passwordArray = getRandomOfEachNominatedType();
+    var partialArray = getRandomOfEachNominatedType();
 
     //Prompt user for password length and validate input
     function askForPasswordLength() {
@@ -73,26 +73,43 @@ function writePassword() {
 
     //Randomly select one of each character type nominated by the user
     function getRandomOfEachNominatedType() {
-      var passwordArray = [];
+      var partialArray = [];
       for (let i = 0; i < characterTypeChoices.length; i++) {
         var choice = characterTypeChoices[i];
         var randomInt = getRandomInt(characterArrays[i].length);
         if (choice == true) {
-          passwordArray.push(characterArrays[i][randomInt]);
+          partialArray.push(characterArrays[i][randomInt]);
         }   
       }
-      return passwordArray;
+      return partialArray;
     }
 
-    var remainder = (passwordLength - passwordArray.length);
+    var remainder = (passwordLength - partialArray.length);
 
     //Fill remainder of array with randomly selected characters from character pool
-    for (let i = 0; i < remainder; i++) {
-      var randomIndex = getRandomInt(characterPool.length);
-      var randomChar = characterPool[randomIndex];
-      passwordArray.push(randomChar)
+    //Assign results to variable "completeArray"
+    var completeArray =  getCompleteArray();
+    function getCompleteArray() {
+        for (let i = 0; i < remainder; i++) {
+            var randomIndex = getRandomInt(characterPool.length);
+            var randomChar = characterPool[randomIndex];
+            partialArray.push(randomChar)
+            }
+        return partialArray;
     }
 
+    //function to shuffle array so that the characters generated from getRandomOfEachNominatedType can occur at any index array, not just at the beginning
+    var passwordArray = getShuffledArray();
+    function getShuffledArray() {
+        var passwordArray = [];
+        for (let i = completeArray.length; i > 0; i--) {
+            var randomIndex = getRandomInt(completeArray.length);
+            passwordArray.splice(randomIndex, 0, completeArray[randomIndex]);
+            completeArray.splice(randomIndex, 1)
+            }
+        return passwordArray;
+    }
+ 
     //convert array to string
     password = passwordArray.join("");
     return password; 
