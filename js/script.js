@@ -66,7 +66,7 @@ function writePassword() {
       return characterPool;
     }
 
-    //generate a random number
+    //Generate a random number
     function getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
     }
@@ -84,6 +84,7 @@ function writePassword() {
       return partialArray;
     }
 
+    //Calculate remainder and store as variable
     var remainder = (passwordLength - partialArray.length);
 
     //Fill remainder of array with randomly selected characters from character pool
@@ -98,7 +99,7 @@ function writePassword() {
         return partialArray;
     }
 
-    //function to shuffle array so that the characters generated from getRandomOfEachNominatedType can occur at any index array, not just at the beginning
+    //Shuffle array so that the characters generated from getRandomOfEachNominatedType can occur at any index array, not just at the beginning
     var passwordArray = getShuffledArray();
     function getShuffledArray() {
         var passwordArray = [];
@@ -110,10 +111,9 @@ function writePassword() {
         return passwordArray;
     }
  
-    //convert array to string
+    //Convert array to string
     password = passwordArray.join("");
     return password; 
-
   }
   
   passwordText.value = password;
